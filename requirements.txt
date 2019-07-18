@@ -1,0 +1,7 @@
+bcrypt==3.1.7
+cffi==1.12.3
+Django==1.10
+pycparser==2.19
+pytz==2019.1
+six==1.12.0
+validate-email==1.3

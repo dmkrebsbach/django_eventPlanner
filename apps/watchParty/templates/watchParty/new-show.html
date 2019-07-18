@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create an Event!</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'watchParty/css/new-show.css' %}">
+</head>
+<body>
+    <div class = "header">
+            <h1> Welcome to the GOT GoT Event Planner</h1>
+            <a href="/dashboard">User Dashboard</a>
+            <a href="/shows">Upcoming Shows</a>
+            <a href="/logout">Log out</a>
+    </div>
+
+    <div class="container">
+
+            <div class="createEventBox">
+
+                    <h1>Add An Upcoming Event</h1>
+                    <form action="/createEvent" method="post">
+                        {% csrf_token %}
+                        <h3>Title: <input type="text" name="title"></h4>
+                        
+                        <h3>Genre: <input type="text" name="genre"></h4>
+                        
+                        <!-- Create Fields for both new selection and created genre's from database (for genre in genres)-->
+                        <h3>When: <input type="date" name="eventDate"></h4>
+                        
+                        <h3>Location: <input type="text" name="location"></h4>
+                        
+                        </br></br>
+                        <input type="submit" value="Create Event" class="button">   
+                    </form>
+                </div>
+
+        
+    </div>
+</body>
+</html>

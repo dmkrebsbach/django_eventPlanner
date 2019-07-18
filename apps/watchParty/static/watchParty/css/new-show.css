@@ -1,0 +1,40 @@
+*{margin:0;padding:0;}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    margin: 100px;
+}
+
+h1 {
+    color: red;
+}
+
+h3 {
+    margin-top: 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    border: 3px solid black;
+    margin-left: 10px;
+}
+
+.header h1, p, a {
+    display: inline-block;
+    justify-content: space-around;   
+}
+
+.header h1 {
+    margin-left: 25px;
+    margin-right: 100px;
+}
+
+.header p {
+    margin-right: 100px;
+}
+
+.header a {
+    margin-right: 25px;
+}

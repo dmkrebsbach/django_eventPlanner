@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login And Registration Main Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'watchParty/css/dashboard.css' %}">
+</head>
+<body>
+    <div class = "header">
+            <h1> Welcome to the GOT GoT Event Planner</h1>
+            <a href="/dashboard">User Dashboard</a>
+            <a href="/shows">Upcoming Shows</a>
+            <a href="/logout">Log out</a>
+    </div>
+
+    <div class="container">
+
+        <div class = "statsAndButton">
+            <h2>Your Event Stats</h2>
+            <div class="userStats">
+                <p>Name: {{user.firstName}} {{user.lastName}}</p></br>
+                <p># of Events You're Hosting: {{hostEvents}} </p></br> <!--counter for hosted events?-->
+                <p># of Events You're Attending: {{attendeeCount}} </p></br> <!--counter for joined events?-->
+                <p>Account Created: {{user.createdAt}} </p></br> <!--strip created Time-->
+            </div>
+
+            <a href="/newShow">Create A Watch Party</a>
+        </div>
+        <div class="events">
+                
+
+
+
+            <div class = "eventTables">
+                    <h1>Events You Are Hosting</h1>
+                <table>
+                    <tr>
+                        <th>Show</th>
+                        <th>Location</th>
+                        <th>When</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for event in userEvents%}
+                        {% if event.host.id == user.id %}
+                        <tr>
+                            <td>{{event.title}}</td>
+                            <td>{{event.location}}</td>
+                            <td>{{event.eventDate}}</td>
+                            <td>
+                                <a href="/shows/{{event.id}}">View&nbsp</a>|
+                                <a href="/shows/{{event.id}}/edit">Edit&nbsp</a>|
+                                <a href="/shows/{{event.id}}/cancel">Cancel&nbsp</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}    
+                </table>
+            </div>
+
+            <div class = "eventTables">
+                    <h1>Events You Are Attending</h1>
+                <table>
+                    <tr>
+                        <th>Show</th>
+                        <th>Location</th>
+                        <th>Hosted By</th>
+                        <th>When</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for event in userEvents%}
+                        {% if user.id != event.host.id%}
+                        <tr>
+                            <td>{{event.title}}</td>
+                            <td>{{event.location}}</td>
+                            <td>{{event.host.firstName}} {{event.host.lastName}}</td>
+                            <td>{{event.eventDate}}</td>
+                            <td>
+                                <a href="/shows/{{event.id}}">View&nbsp</a>|
+                                <a href="/shows/{{event.id}}/leave">Leave</a>
+        
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}    
+                </table>
+            </div>
+
+            <div class = "eventTables">
+                    <h1>All Upcoming Events</h1>
+                <table> 
+                    <tr>
+                        <th>Show</th>
+                        <th>Location</th>
+                        <th>Hosted By</th>
+                        <th>When</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for event in allEvents%}
+                        <tr>
+                            <td>{{event.title}}</td>
+                            <td>{{event.location}}</td>
+                            <td>{{event.host.firstName}} {{event.host.lastName}}</td>
+                            <td>{{event.eventDate}}</td>
+                            <td>
+                                <a href="/shows/{{event.id}}">View&nbsp</a>|
+                                <a href="/shows/{{event.id}}/join">Join</a>
+        
+                            </td>
+                        </tr>
+                    {% endfor %}    
+                </table>
+            </div>
+        </div>        
+    </div>
+</body>
+</html>

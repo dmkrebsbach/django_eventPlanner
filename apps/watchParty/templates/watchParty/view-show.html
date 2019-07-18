@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login And Registration Main Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'watchParty/css/view-show.css' %}">
+</head>
+<body>
+    <div class = "header">
+            <h1> Welcome to the GOT GoT Event Planner</h1>
+            <a href="/dashboard">User Dashboard</a>
+            <a href="/shows">Upcoming Shows</a>
+            <a href="/logout">Log out</a>
+    </div>
+
+    <div class="container">
+
+        <div class = "eventSummary">
+            <h2>{{event.title}}</h2>
+            <div class="eventStats">
+                <p>Genre: {{event.genre}}</p></br>
+                <p>When: {{event.eventDate}}</p></br> <!--counter for hosted events?-->
+                <p>Location: {{event.location}}</p></br> <!--counter for joined events?-->
+            </div>
+        </div>
+
+        <div class="attendees">
+            <h2>Event Attendees</h2>
+            {% for attendee in eventAttendees%}
+                <ol>
+                    <li>{{attendee.firstName}} {{attendee.lastName}}</li>
+                </ol>
+            
+            {% endfor %}
+            
+                <a href="/shows/{{event.id}}/join">Join Event</a>
+            
+        </div>        
+    </div>
+</body>
+</html>
